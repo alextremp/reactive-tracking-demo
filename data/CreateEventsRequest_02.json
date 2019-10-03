@@ -1,0 +1,16 @@
+{
+  "clientId": "0000-0000-0000-0000-0000-0002",
+  "events": [
+    {
+      "name": "TEST_01",
+      "payload": {
+        "key1": "value1",
+        "key2": 2,
+        "key3": {
+          "key31": "value31"
+        }
+      }
+    }s
+  ]
+}
+
