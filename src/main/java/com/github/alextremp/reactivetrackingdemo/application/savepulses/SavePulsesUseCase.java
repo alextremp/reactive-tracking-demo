@@ -13,25 +13,25 @@ import java.util.logging.Logger;
 
 public class SavePulsesUseCase implements SavePulsesService {
 
-    private final Logger LOG = Logger.getLogger(SavePulsesUseCase.class.getName());
+  private final Logger LOG = Logger.getLogger(SavePulsesUseCase.class.getName());
 
-    private final DomainEventBus domainEventBus;
-    private final PulseFactory pulseFactory;
+  private final DomainEventBus domainEventBus;
+  private final PulseFactory pulseFactory;
 
-    public SavePulsesUseCase(DomainEventBus domainEventBus, PulseFactory pulseFactory) {
-        this.domainEventBus = domainEventBus;
-        this.pulseFactory = pulseFactory;
-    }
+  public SavePulsesUseCase(DomainEventBus domainEventBus, PulseFactory pulseFactory) {
+    this.domainEventBus = domainEventBus;
+    this.pulseFactory = pulseFactory;
+  }
 
-    @Override
-    public Mono<SavePulsesResponse> savePulses(SavePulsesRequest request) {
-        return Flux.fromArray(request.getEvents())
-                .doOnNext(event -> LOG.info("SavePulsesUseCase::" + request))
-                .flatMap(event -> pulseFactory.create(request.getClientId(), event.getEventName(), event.getPayload()))
-                .map(ReceivedPulseEvent::new)
-                .doOnNext(domainEventBus::publish)
-                .collectList()
-                .map(receivedEvents -> "PROCESSED::" + receivedEvents.size())
-                .map(SavePulsesResponse::new);
-    }
+  @Override
+  public Mono<SavePulsesResponse> savePulses(SavePulsesRequest request) {
+    return Flux.fromArray(request.getEvents())
+        .doOnNext(event -> LOG.info("SavePulsesUseCase::" + request))
+        .flatMap(event -> pulseFactory.create(request.getClientId(), event.getEventName(), event.getPayload()))
+        .map(ReceivedPulseEvent::new)
+        .doOnNext(domainEventBus::publish)
+        .collectList()
+        .map(receivedEvents -> "PROCESSED::" + receivedEvents.size())
+        .map(SavePulsesResponse::new);
+  }
 }

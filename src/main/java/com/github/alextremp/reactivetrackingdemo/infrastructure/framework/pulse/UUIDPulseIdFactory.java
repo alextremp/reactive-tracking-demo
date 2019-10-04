@@ -8,9 +8,9 @@ import java.util.UUID;
 
 @Component
 public class UUIDPulseIdFactory implements PulseIdFactory {
-    @Override
-    public Mono<String> createId() {
-        return Mono.fromCallable(() -> UUID.randomUUID())
-                .map(uuid -> uuid.toString());
-    }
+  @Override
+  public Mono<String> createId() {
+    return Mono.fromCallable(() -> UUID.randomUUID())
+        .map(uuid -> uuid.toString());
+  }
 }

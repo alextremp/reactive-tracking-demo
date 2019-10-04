@@ -4,30 +4,30 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class PulseEvent {
-    private String eventName;
-    private Map<String, Object> payload = new LinkedHashMap<>();
+  private String eventName;
+  private Map<String, Object> payload = new LinkedHashMap<>();
 
-    public String getEventName() {
-        return eventName;
-    }
+  public String getEventName() {
+    return eventName;
+  }
 
-    public void setEventName(String eventName) {
-        this.eventName = eventName;
-    }
+  public void setEventName(String eventName) {
+    this.eventName = eventName;
+  }
 
-    public Map<String, Object> getPayload() {
-        return payload;
-    }
+  public Map<String, Object> getPayload() {
+    return payload;
+  }
 
-    public void setPayload(Map<String, Object> payload) {
-        this.payload = payload;
-    }
+  public void setPayload(Map<String, Object> payload) {
+    this.payload = payload;
+  }
 
-    @Override
-    public String toString() {
-        return "PulseEvent{" +
-                "eventName='" + eventName + '\'' +
-                ", payload=" + payload +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "PulseEvent{" +
+        "eventName='" + eventName + '\'' +
+        ", payload=" + payload +
+        '}';
+  }
 }

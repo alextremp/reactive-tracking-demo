@@ -8,13 +8,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class PulseConfiguration {
 
-    @Bean
-    public PulseFactory pulseFactory(PulseIdFactory pulseIdFactory) {
-        return new PulseFactory(pulseIdFactory);
-    }
+  @Bean
+  public PulseFactory pulseFactory(PulseIdFactory pulseIdFactory) {
+    return new PulseFactory(pulseIdFactory);
+  }
 
-    @Bean
-    PulseIdFactory pulseIdFactory() {
-        return new UUIDPulseIdFactory();
-    }
+  @Bean
+  PulseIdFactory pulseIdFactory() {
+    return new UUIDPulseIdFactory();
+  }
 }

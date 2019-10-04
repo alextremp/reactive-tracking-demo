@@ -2,7 +2,6 @@ package com.github.alextremp.reactivetrackingdemo.infrastructure.framework.contr
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.alextremp.reactivetrackingdemo.application.SavePulsesService;
-import com.github.alextremp.reactivetrackingdemo.application.savepulses.io.PulseEvent;
 import com.github.alextremp.reactivetrackingdemo.application.savepulses.io.SavePulsesRequest;
 import com.github.alextremp.reactivetrackingdemo.application.savepulses.io.SavePulsesResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,22 +19,22 @@ import java.util.logging.Logger;
 @RequestMapping("/")
 public class TrackingController {
 
-    private final Logger LOG = Logger.getLogger(TrackingController.class.getName());
-    private final ObjectMapper objectMapper;
-    private final SavePulsesService savePulsesService;
+  private final Logger LOG = Logger.getLogger(TrackingController.class.getName());
+  private final ObjectMapper objectMapper;
+  private final SavePulsesService savePulsesService;
 
-    @Autowired
-    public TrackingController(ObjectMapper objectMapper, SavePulsesService savePulsesService) {
-        this.objectMapper = objectMapper;
-        this.savePulsesService = savePulsesService;
-    }
+  @Autowired
+  public TrackingController(ObjectMapper objectMapper, SavePulsesService savePulsesService) {
+    this.objectMapper = objectMapper;
+    this.savePulsesService = savePulsesService;
+  }
 
-    @Cacheable("TrackingController#savePulses")
-    @PostMapping
-    public Mono<SavePulsesResponse> savePulses(@RequestBody String createEventsRequestString) {
-        return Mono.fromCallable(() -> objectMapper.readValue(createEventsRequestString, SavePulsesRequest.class))
-                .subscribeOn(Schedulers.parallel())
-                .flatMap(savePulsesService::savePulses)
-                .doOnNext(response -> LOG.info("response: " + response));
-    }
+  @Cacheable("TrackingController#savePulses")
+  @PostMapping
+  public Mono<SavePulsesResponse> savePulses(@RequestBody String createEventsRequestString) {
+    return Mono.fromCallable(() -> objectMapper.readValue(createEventsRequestString, SavePulsesRequest.class))
+        .subscribeOn(Schedulers.parallel())
+        .flatMap(savePulsesService::savePulses)
+        .doOnNext(response -> LOG.info("response: " + response));
+  }
 }

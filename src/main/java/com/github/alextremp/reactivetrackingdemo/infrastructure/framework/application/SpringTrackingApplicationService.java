@@ -13,15 +13,15 @@ import reactor.core.publisher.Mono;
 @Service
 public class SpringTrackingApplicationService implements SavePulsesService {
 
-    private final SavePulsesUseCase createEventsUseCase;
+  private final SavePulsesUseCase createEventsUseCase;
 
-    @Autowired
-    public SpringTrackingApplicationService(SavePulsesUseCase createEventsUseCase) {
-        this.createEventsUseCase = createEventsUseCase;
-    }
+  @Autowired
+  public SpringTrackingApplicationService(SavePulsesUseCase createEventsUseCase) {
+    this.createEventsUseCase = createEventsUseCase;
+  }
 
-    @Override
-    public Mono<SavePulsesResponse> savePulses(SavePulsesRequest request) {
-        return createEventsUseCase.savePulses(request);
-    }
+  @Override
+  public Mono<SavePulsesResponse> savePulses(SavePulsesRequest request) {
+    return createEventsUseCase.savePulses(request);
+  }
 }

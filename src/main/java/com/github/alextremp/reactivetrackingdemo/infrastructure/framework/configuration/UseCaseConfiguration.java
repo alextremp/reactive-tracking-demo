@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class UseCaseConfiguration {
 
-    @Bean
-    public SavePulsesUseCase createEventsUseCase(DomainEventBus domainEventBus, PulseFactory pulseFactory) {
-        return new SavePulsesUseCase(domainEventBus, pulseFactory);
-    }
+  @Bean
+  public SavePulsesUseCase createEventsUseCase(DomainEventBus domainEventBus, PulseFactory pulseFactory) {
+    return new SavePulsesUseCase(domainEventBus, pulseFactory);
+  }
 }

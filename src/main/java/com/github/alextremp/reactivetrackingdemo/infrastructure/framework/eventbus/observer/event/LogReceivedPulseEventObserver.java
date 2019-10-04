@@ -9,10 +9,10 @@ import java.util.logging.Logger;
 @Component
 public class LogReceivedPulseEventObserver {
 
-    private static final Logger LOG = Logger.getLogger(LogReceivedPulseEventObserver.class.getName());
+  private static final Logger LOG = Logger.getLogger(LogReceivedPulseEventObserver.class.getName());
 
-    @EventListener
-    void handle(ReceivedPulseEvent event) {
-        LOG.info("ReceivedPulseEvent::" + event);
-    }
+  @EventListener
+  void handle(ReceivedPulseEvent event) {
+    LOG.info("ReceivedPulseEvent::" + event);
+  }
 }
