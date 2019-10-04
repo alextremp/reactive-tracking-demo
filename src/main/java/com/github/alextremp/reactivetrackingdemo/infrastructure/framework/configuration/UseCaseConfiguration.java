@@ -1,8 +1,8 @@
 package com.github.alextremp.reactivetrackingdemo.infrastructure.framework.configuration;
 
-import com.github.alextremp.reactivetrackingdemo.application.createevents.CreateEventsUseCase;
+import com.github.alextremp.reactivetrackingdemo.application.savepulses.SavePulsesUseCase;
 import com.github.alextremp.reactivetrackingdemo.domain.DomainEventBus;
-import com.github.alextremp.reactivetrackingdemo.domain.event.EventFactory;
+import com.github.alextremp.reactivetrackingdemo.domain.pulse.PulseFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class UseCaseConfiguration {
 
     @Bean
-    public CreateEventsUseCase createEventsUseCase(DomainEventBus domainEventBus, EventFactory eventFactory) {
-        return new CreateEventsUseCase(domainEventBus, eventFactory);
+    public SavePulsesUseCase createEventsUseCase(DomainEventBus domainEventBus, PulseFactory pulseFactory) {
+        return new SavePulsesUseCase(domainEventBus, pulseFactory);
     }
 }

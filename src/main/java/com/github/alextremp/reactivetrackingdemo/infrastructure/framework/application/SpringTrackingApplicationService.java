@@ -1,9 +1,9 @@
 package com.github.alextremp.reactivetrackingdemo.infrastructure.framework.application;
 
-import com.github.alextremp.reactivetrackingdemo.application.CreateEventsService;
-import com.github.alextremp.reactivetrackingdemo.application.createevents.CreateEventsUseCase;
-import com.github.alextremp.reactivetrackingdemo.application.createevents.io.CreateEventsRequest;
-import com.github.alextremp.reactivetrackingdemo.application.createevents.io.CreateEventsResponse;
+import com.github.alextremp.reactivetrackingdemo.application.SavePulsesService;
+import com.github.alextremp.reactivetrackingdemo.application.savepulses.SavePulsesUseCase;
+import com.github.alextremp.reactivetrackingdemo.application.savepulses.io.SavePulsesRequest;
+import com.github.alextremp.reactivetrackingdemo.application.savepulses.io.SavePulsesResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -11,17 +11,17 @@ import reactor.core.publisher.Mono;
 
 @Primary
 @Service
-public class SpringTrackingApplicationService implements CreateEventsService {
+public class SpringTrackingApplicationService implements SavePulsesService {
 
-    private final CreateEventsUseCase createEventsUseCase;
+    private final SavePulsesUseCase createEventsUseCase;
 
     @Autowired
-    public SpringTrackingApplicationService(CreateEventsUseCase createEventsUseCase) {
+    public SpringTrackingApplicationService(SavePulsesUseCase createEventsUseCase) {
         this.createEventsUseCase = createEventsUseCase;
     }
 
     @Override
-    public Mono<CreateEventsResponse> createEvents(CreateEventsRequest request) {
-        return createEventsUseCase.createEvents(request);
+    public Mono<SavePulsesResponse> savePulses(SavePulsesRequest request) {
+        return createEventsUseCase.savePulses(request);
     }
 }

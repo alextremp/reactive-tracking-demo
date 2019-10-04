@@ -1,10 +1,10 @@
-package com.github.alextremp.reactivetrackingdemo.application.createevents.io;
+package com.github.alextremp.reactivetrackingdemo.application.savepulses.io;
 
 import java.util.Arrays;
 
-public class CreateEventsRequest {
+public class SavePulsesRequest {
     private String clientId;
-    private Event[] events;
+    private PulseEvent[] events;
 
     public String getClientId() {
         return clientId;
@@ -14,17 +14,17 @@ public class CreateEventsRequest {
         this.clientId = clientId;
     }
 
-    public Event[] getEvents() {
+    public PulseEvent[] getEvents() {
         return events;
     }
 
-    public void setEvents(Event[] events) {
+    public void setEvents(PulseEvent[] events) {
         this.events = events;
     }
 
     @Override
     public String toString() {
-        return "CreateEventsRequest{" +
+        return "SavePulsesRequest{" +
                 "clientId='" + clientId + '\'' +
                 ", events=" + Arrays.toString(events) +
                 '}';

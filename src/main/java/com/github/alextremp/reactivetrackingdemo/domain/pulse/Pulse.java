@@ -1,14 +1,25 @@
-package com.github.alextremp.reactivetrackingdemo.domain.event;
+package com.github.alextremp.reactivetrackingdemo.domain.pulse;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;
 
-public class Event {
+public class Pulse {
     private final String id;
     private final String clientId;
     private final String name;
     private final Map<String, Object> payload;
 
-    public Event(String id, String clientId, String name, Map<String, Object> payload) {
+    public Pulse(String id, String clientId, String name, Map<String, Object> payload) {
+        if (StringUtils.isBlank(id)) {
+            throw new IllegalArgumentException("Id cannot be empty");
+        }
+        if (StringUtils.isBlank(clientId)) {
+            throw new IllegalArgumentException("Client Id cannot be empty");
+        }
+        if (StringUtils.isBlank(name)) {
+            throw new IllegalArgumentException("Name cannot be empty");
+        }
         this.id = id;
         this.clientId = clientId;
         this.name = name;
@@ -33,7 +44,7 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Event{" +
+        return "Pulse{" +
                 "id='" + id + '\'' +
                 ", clientId='" + clientId + '\'' +
                 ", name='" + name + '\'' +
