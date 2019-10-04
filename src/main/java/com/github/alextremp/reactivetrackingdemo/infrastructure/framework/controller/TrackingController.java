@@ -36,23 +36,6 @@ public class TrackingController {
         return Mono.fromCallable(() -> objectMapper.readValue(createEventsRequestString, SavePulsesRequest.class))
                 .subscribeOn(Schedulers.parallel())
                 .flatMap(savePulsesService::savePulses)
-                .onErrorResume(throwable -> onCreateEventsError(createEventsRequestString, throwable))
                 .doOnNext(response -> LOG.info("response: " + response));
-    }
-
-    private Mono<SavePulsesResponse> onCreateEventsError(String createEventsRequestString, Throwable error) {
-        return Mono.fromCallable(() -> savePulsesRequestErrorsavePulsesRequestError(createEventsRequestString, error))
-                .flatMap(savePulsesService::savePulses);
-    }
-
-    private SavePulsesRequest savePulsesRequestErrorsavePulsesRequestError(String receivedRequest, Throwable error) {
-        SavePulsesRequest request = new SavePulsesRequest();
-        request.setClientId("reactive-tracking-demo-error");
-        PulseEvent pulseData = new PulseEvent();
-        pulseData.setEventName("REQUEST_ERROR");
-        pulseData.getPayload().put("receivedRequest", receivedRequest);
-        pulseData.getPayload().put("error", error);
-        request.setEvents(new PulseEvent[]{pulseData});
-        return request;
     }
 }
