@@ -11,4 +11,11 @@ public class SavePulsesResponse {
   public String getCode() {
     return code;
   }
+
+  @Override
+  public String toString() {
+    return "SavePulsesResponse{" +
+        "code='" + code + '\'' +
+        '}';
+  }
 }
