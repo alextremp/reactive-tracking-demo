@@ -5,6 +5,7 @@ import com.github.alextremp.reactivetrackingdemo.application.savepulses.SavePuls
 import com.github.alextremp.reactivetrackingdemo.application.savepulses.io.SavePulsesRequest;
 import com.github.alextremp.reactivetrackingdemo.application.savepulses.io.SavePulsesResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -20,6 +21,7 @@ public class SpringTrackingApplicationService implements SavePulsesService {
     this.createEventsUseCase = createEventsUseCase;
   }
 
+  @Cacheable("SpringTrackingApplicationService#savePulses")
   @Override
   public Mono<SavePulsesResponse> savePulses(SavePulsesRequest request) {
     return createEventsUseCase.savePulses(request);

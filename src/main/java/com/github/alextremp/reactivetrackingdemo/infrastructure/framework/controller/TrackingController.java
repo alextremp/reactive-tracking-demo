@@ -5,7 +5,6 @@ import com.github.alextremp.reactivetrackingdemo.application.SavePulsesService;
 import com.github.alextremp.reactivetrackingdemo.application.savepulses.io.SavePulsesRequest;
 import com.github.alextremp.reactivetrackingdemo.application.savepulses.io.SavePulsesResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +28,6 @@ public class TrackingController {
     this.savePulsesService = savePulsesService;
   }
 
-  @Cacheable("TrackingController#savePulses")
   @PostMapping
   public Mono<SavePulsesResponse> savePulses(@RequestBody String createEventsRequestString) {
     return Mono.fromCallable(() -> objectMapper.readValue(createEventsRequestString, SavePulsesRequest.class))
